@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Mariage Parfait</title>
+    <meta name="description" content="Contactez-nous pour promouvoir vos services sur Mariage Parfait">
+    
+    <!-- Polices Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Feuille de style principale -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <style>
+        /* ===== CONTACT SECTION ===== */
+        .page-header {
+            background-color: var(--color-primary-light);
+            padding: var(--spacing-16) 0 var(--spacing-8);
+            text-align: center;
+            margin-top: 64px;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-4);
+            color: var(--color-primary);
+        }
+        
+        .page-header p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--color-muted-foreground);
+        }
+        
+        .contact-section {
+            background-color: var(--color-background);
+            padding: var(--spacing-16) 0;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-8);
+            margin-top: var(--spacing-8);
+        }
+        
+        @media (min-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr 2fr;
+                gap: var(--spacing-12);
+            }
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-6);
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-4);
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--color-primary-light);
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-info-item h3 {
+            font-size: 1.125rem;
+            margin-bottom: var(--spacing-1);
+            font-family: var(--font-sans);
+            font-weight: 600;
+        }
+        
+        .contact-info-item p {
+            color: var(--color-muted-foreground);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: var(--spacing-4);
+            margin-top: var(--spacing-6);
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--color-primary-light);
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-base);
+        }
+        
+        .social-link:hover {
+            background-color: var(--color-primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .contact-form-container {
+            background-color: var(--color-background);
+            border-radius: var(--radius);
+            padding: var(--spacing-8);
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(214, 36, 110, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-form-container:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(214, 36, 110, 0.3);
+        }
+        
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-6);
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-2);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-6);
+        }
+        
+        @media (min-width: 640px) {
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: var(--spacing-3) var(--spacing-4);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            background-color: var(--color-background);
+            color: var(--color-foreground);
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            transition: var(--transition-base);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 2px var(--color-primary-light);
+        }
+        
+        .form-control::placeholder {
+            color: var(--color-muted-foreground);
+            opacity: 0.7;
+        }
+        
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        label {
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-1);
+        }
+        
+        .required {
+            color: var(--color-primary);
+        }
+        
+        .form-footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: var(--spacing-4);
+        }
+        
+        .error-message {
+            padding: var(--spacing-3) var(--spacing-4);
+            background-color: var(--color-red-light);
+            color: var(--color-red);
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: var(--spacing-4);
+            display: none;
+        }
+        
+        .error-message.visible {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        .success-message {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: var(--spacing-8) var(--spacing-4);
+            gap: var(--spacing-4);
+        }
+        
+        .success-message.visible {
+            display: flex;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .success-icon {
+            font-size: 3rem;
+            color: var(--color-green);
+            margin-bottom: var(--spacing-4);
+        }
+        
+        .success-message h3 {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-2);
+        }
+        
+        .success-message p {
+            color: var(--color-muted-foreground);
+        }
+        
+        /* Animation pour le message de succès */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .spinner {
+            display: inline-block;
+            margin-right: 8px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Navigation -->
+        <header class="header" id="header">
+            <div class="container">
+                <div class="header-content">
+                    <a href="index.php" class="logo">
+                        <span class="fancy-title">Mariage Parfait</span>
+                    </a>
+                    
+                    <nav class="main-nav">
+                        <ul class="nav-list">
+                            <li><a href="prestataires.php" class="nav-link">Préstataires</a></li>
+                            <li><a href="actualites.php" class="nav-link">Actualités</a></li>
+                            <li><a href="contact.php" class="nav-link">Contact</a></li>
+                            <li>
+                                <button class="theme-toggle" id="theme-toggle" aria-label="Changer de thème">
+                                    <i class="fas fa-sun"></i>
+                                    <i class="fas fa-moon"></i>
+                                </button>
+                            </li>
+                            <?php if(!isset($_SESSION['user_id'])): ?>
+                            <li>
+                                <a href="connexion.php" class="btn btn-primary btn-rounded">Connexion</a>
+                            </li>
+                            <?php else: ?>
+                            <li>
+                                <a href="logout.php" class="btn btn-primary btn-rounded">Déconnexion</a>
+                            </li>
+                            <?php endif; ?>
+                        </ul>
+                    </nav>
+                    
+                    <div class="mobile-nav-toggle">
+                        <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
+                            <i class="fas fa-bars"></i>
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <button class="theme-toggle" id="mobile-theme-toggle" aria-label="Changer de thème">
+                            <i class="fas fa-sun"></i>
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mobile-menu" id="mobile-menu">
+                <nav class="mobile-nav">
+                    <ul class="mobile-nav-list">
+                        <li><a href="categories.php" class="mobile-nav-link">Catégories</a></li>
+                        <li><a href="actualites.php" class="mobile-nav-link">Actualités</a></li>
+                        <li><a href="contact.php" class="mobile-nav-link">Contact</a></li>
+                        <li>
+                            <a href="connexion.php" class="btn btn-primary btn-rounded btn-block">Connexion</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="container">
+                    <h1 class="fancy-title">Contact</h1>
+                    <p>Nous sommes à votre écoute pour toutes vos demandes</p>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <section class="section contact-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2 class="section-title decorative-line">Contactez-nous</h2>
+                        <p class="section-description">
+                            Vous souhaitez promouvoir vos services ou obtenir plus d'informations ? Remplissez le formulaire ci-dessous
+                            et nous vous répondrons dans les plus brefs délais.
+                        </p>
+                    </div>
+
+                    <div class="contact-container">
+                        <div class="contact-info">
+                            <div class="contact-info-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h3>Notre adresse</h3>
+                                    <p>Non</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-info-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h3>Téléphone</h3>
+                                    <p>Non</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-info-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h3>Email</h3>
+                                    <p>contact@mariageparfait.fr</p>
+                                </div>
+                            </div>
+
+                            <div class="social-links">
+                                <a href="#" class="social-link" aria-label="Facebook">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-link" aria-label="Instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="social-link" aria-label="Whatsapp">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="contact-form-container card-fancy">
+                            <div id="success-message" class="success-message">
+                                <div class="success-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <h3>Message envoyé !</h3>
+                                <p>Nous vous répondrons dans les plus brefs délais.</p>
+                            </div>
+
+                            <form id="contact-form" class="contact-form">
+                                <div id="error-message" class="error-message"></div>
+                                
+                                <div class="form-group">
+                                    <label for="nom">
+                                        Nom complet <span class="required">*</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="nom"
+                                        name="nom"
+                                        placeholder="Votre nom et prénom"
+                                        required
+                                        class="form-control"
+                                    />
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="email">
+                                            Email <span class="required">*</span>
+                                        </label>
+                                        <input
+                                            type="email"
+                                            id="email"
+                                            name="email"
+                                            placeholder="votre@email.com"
+                                            required
+                                            class="form-control"
+                                        />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="telephone">Téléphone</label>
+                                        <input
+                                            type="tel"
+                                            id="telephone"
+                                            name="telephone"
+                                            placeholder="+243 00 000 000"
+                                            class="form-control"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="typePrestataire">Type de demande</label>
+                                    <select
+                                        id="typePrestataire"
+                                        name="typePrestataire"
+                                        class="form-control"
+                                    >
+                                        <option value="">Sélectionnez une option</option>
+                                        <option value="publicite">Demande de publicité</option>
+                                        <option value="prestataire">Inscription comme prestataire</option>
+                                        <option value="partenariat">Proposition de partenariat</option>
+                                        <option value="information">Demande d'information</option>
+                                        <option value="autre">Autre</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="sujet">
+                                        Sujet <span class="required">*</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="sujet"
+                                        name="sujet"
+                                        placeholder="Sujet de votre message"
+                                        required
+                                        class="form-control"
+                                    />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="message">
+                                        Message <span class="required">*</span>
+                                    </label>
+                                    <textarea
+                                        id="message"
+                                        name="message"
+                                        placeholder="Votre message..."
+                                        required
+                                        class="form-control"
+                                        rows="5"
+                                    ></textarea>
+                                </div>
+
+                                <div class="form-footer">
+                                    <button type="submit" id="submit-btn" class="btn btn-primary btn-rounded">
+                                        Envoyer ma demande
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <span class="fancy-title">Mariage Parfait</span>
+                        <p>Trouvez les meilleurs prestataires pour votre mariage</p>
+                    </div>
+                    <div class="footer-links">
+                        <div class="footer-links-column">
+                            <h3>Navigation</h3>
+                            <ul>
+                                <li><a href="index.php">Accueil</a></li>
+                                <li><a href="prestataires.php">Préstataires</a></li>
+                                <li><a href="actualites.php">Actualités</a></li>
+                                <li><a href="contact.php">Contact</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-links-column">
+                            <h3>Informations</h3>
+                            <ul class="footer-links">
+                                <li><a href="contact.php">Contact</a></li>
+                                <li><a href="contact.php">Devenir prestataire</a></li>
+                                <li><a href="contact.php">FAQ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2023 Mariage Parfait - Tous droits réservés</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Gestion du formulaire de contact
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contact-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const errorMessage = document.getElementById('error-message');
+            const successMessage = document.getElementById('success-message');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Réinitialiser les messages
+                errorMessage.classList.remove('visible');
+                errorMessage.textContent = '';
+                
+                // Vérifier les champs requis
+                const nom = document.getElementById('nom').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const sujet = document.getElementById('sujet').value.trim();
+                const message = document.getElementById('message').value.trim();
+                
+                if (!nom || !email || !sujet || !message) {
+                    errorMessage.textContent = 'Veuillez remplir tous les champs obligatoires.';
+                    errorMessage.classList.add('visible');
+                    return;
+                }
+                
+                // Vérifier le format de l'email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    errorMessage.textContent = 'Veuillez entrer une adresse email valide.';
+                    errorMessage.classList.add('visible');
+                    return;
+                }
+                
+                // Afficher l'état de chargement
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner spinner"></i> Envoi en cours...';
+                
+                // Simuler l'envoi du formulaire (à remplacer par votre propre logique d'envoi)
+                setTimeout(function() {
+                    // Cacher le formulaire et afficher le message de succès
+                    contactForm.style.display = 'none';
+                    successMessage.classList.add('visible');
+                    
+                    // Réinitialiser le formulaire
+                    contactForm.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Envoyer ma demande';
+                    
+                    // Pour une utilisation réelle, vous réinitialiseriez le formulaire après l'envoi réussi
+                }, 1500);
+            });
+            
+            // Gestion du menu mobile
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            menuToggle.addEventListener('click', function() {
+                menuToggle.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+            });
+            
+            // Gestion du thème (clair/sombre)
+            const themeToggle = document.getElementById('theme-toggle');
+            const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+            
+            function toggleTheme() {
+                document.body.classList.toggle('dark-mode');
+                localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+            }
+            
+            themeToggle.addEventListener('click', toggleTheme);
+            mobileThemeToggle.addEventListener('click', toggleTheme);
+            
+            // Appliquer le thème enregistré
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+            
+            // Effet de scroll pour le header
+            window.addEventListener('scroll', function() {
+                const header = document.getElementById('header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
