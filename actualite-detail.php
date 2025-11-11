@@ -14,6 +14,7 @@ if (!$news) {
     echo "<h2>Actualité introuvable.</h2>";
     exit;
 }
+#sdgsqdgqdgdsqkgsq
 
 $date = !empty($news['date_publication']) ? date('d/m/Y', strtotime($news['date_publication'])) : '';
 $img = !empty($news['image']) ? $news['image'] : 'images/placeholder.jpg';
